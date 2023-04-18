@@ -47,6 +47,15 @@ doc = {
 
 # index the document
 res = es.index(index=index_name, doc_type=doc_type, body=doc)
+# perform a search
+query = {
+    "query": {
+        "match": {
+            "keywords": "deep learning"
+        }
+    }
+}
 
-# print the response
-print(res)
+results = es.search(index=index_name, doc_type=doc_type, body=query)
+for hit in results['hits']['hits']:
+    print(hit['_source']['title'])
