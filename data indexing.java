@@ -6,6 +6,31 @@ es = Elasticsearch()
 # define the index and document type
 index_name = "my_index"
 doc_type = "my_doc_type"
+    
+# define the mapping for the document type
+mapping = {
+    "properties": {
+        "title": {
+            "type": "text"
+        },
+        "abstract": {
+            "type": "text"
+        },
+        "journal": {
+            "type": "keyword"
+        },
+        "authors": {
+            "type": "keyword"
+        },
+        "keywords": {
+            "type": "keyword"
+        },
+        "publication_date": {
+            "type": "date",
+            "format": "yyyy-MM-dd"
+        }
+    }
+}
 
 # define the document to be indexed
 doc = {
