@@ -32,10 +32,17 @@ mapping = {
     }
 }
 
-# define the document to be indexed
+# create the index with the mapping
+es.indices.create(index=index_name, body={"mappings": {doc_type: mapping}})
+
+# define a document to index
 doc = {
-    "title": "Example Document",
-    "content": "This is an example document to be indexed in Elasticsearch."
+    "title": "Deep Learning for Image Classification in Biomedical Research",
+    "abstract": "This paper describes the use of deep learning techniques for image classification in biomedical research.",
+    "journal": "Nature",
+    "authors": ["John Smith", "Jane Doe"],
+    "keywords": ["deep learning", "image classification", "biomedical research"],
+    "publication_date": "2022-01-01"
 }
 
 # index the document
