@@ -33,8 +33,7 @@ mapping = {
 }
 
 # create the index with the mapping
-doc = {
-    '
+es.indices.create(index=index_name, body={"mappings": {doc_type: mapping}})
 
 # define a document to index
 doc = {
