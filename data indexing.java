@@ -51,7 +51,7 @@ res = es.index(index=index_name, doc_type=doc_type, body=doc)
 query = {
     "query": {
         "match": {
-            "keywords": "deep learning"
+            "keywords": ""
         }
     }
 }
