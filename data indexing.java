@@ -5,7 +5,7 @@ es = Elasticsearch()
 
 # define the index and document type
 index_name = "my_index"
-doc_type = 
+doc_type = "my_doc_type"
     
 # define the mapping for the document type
 mapping = {
