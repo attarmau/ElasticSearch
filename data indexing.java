@@ -20,7 +20,7 @@ mapping = {
             "type": "keyword"
         },
         "authors": {
-            "type": 
+            "type": "keyword"
         },
         "keywords": {
             "type": "keyword"
