@@ -64,3 +64,32 @@ df['fb_relation'] = df['fb_relation'].replace([
        'Engaged (Pending)', 'Married (Pending)', 
        'In an open relationship (Pending)', 'In a relationship (Pending)',
        'In a domestic partnership (Pending)'], 'In a relationship')
+counts = df["fb_relation"].value_counts()
+plt.pie(counts.values, labels=counts.index, autopct="%1.1f%%")
+plt.title("fb_relation")
+plt.show()
+
+df['fb_relation'].unique()
+def extract_json_values(row, key):
+    try:
+        values = json.loads(row['fb_relation'])
+        return values[key]
+    except:
+        return 0
+
+keys = ['Married', 'No_Relation', 'In a relationship', 'Single', 'others']
+for key in keys:
+    df[key] = df.apply(lambda row: extract_json_values(row, key), axis=1)
+
+# Remove the outliers:
+def remove_outliers(df, col_name, threshold):
+    z_scores = stats.zscore(df[col_name])
+    abs_z_scores = np.abs(z_scores)
+    outliers = abs_z_scores > threshold
+    df[col_name][outliers] = np.nan
+    df.drop(df.index[outliers], inplace=True)
+cols_to_process = ['de_monthly_salary', 'de_employment_duration', 'ph_total_contacts', 'days_since_joined', 'app_list_length', 'total_calls',
+                   'duration_incoming_daytime', 'duration_incoming_nighttime', 'duration_outgoing_daytime', 'duration_outgoing_nighttime']
+threshold = 3
+for col in cols_to_process:
+    remove_outliers(df, col, threshold)
