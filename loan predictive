@@ -9,3 +9,29 @@ import seaborn as sns
 import sweetviz as sv
 from scipy import stats
 
+## Data Cleaning & Feature Engineer
+
+# Removing Features: 'ph_country_code', 'fb_gender', 'fb_dob', 'ph_other_device_info'
+df = df.drop('ph_country_code', axis=1)
+df = df.drop('fb_dob', axis=1)
+df = df.drop('fb_gender', axis=1)
+df = df.drop('ph_other_device_info', axis=1)
+
+# Standardizing data types: 'de_date_joined', 'fb_last_update_date'
+df['de_date_joined'] = pd.to_datetime(df['de_date_joined'], format='%d/%m/%Y %H:%M')
+df['days_since_joined'] = (datetime.now() - df['de_date_joined']).dt.days
+
+utc = pytz.utc
+df['fb_last_updated_date'] = pd.to_datetime(df['fb_last_updated_date'])
+df['last_updated_utc'] = df['fb_last_updated_date'].dt.tz_convert(utc)
+df['days_since_fb_update'] = (datetime.now(utc) - df['last_updated_utc']).dt.days
+df = df.drop('fb_last_updated_date', axis=1)
+df = df.drop('last_updated_utc', axis=1)
+df = df.drop('days_since_fb_update', axis=1)
+
+# 'ph_app_list': create a new column for the result of the length of the app list and drop 'ph_app_list'
+def calculate_length(x):
+    return len(eval(x))
+df['app_list_length'] = df['ph_app_list'].apply(calculate_length)
+df = df.drop('ph_app_list', axis=1)
+print(df['app_list_length'])
