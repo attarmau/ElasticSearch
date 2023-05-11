@@ -35,3 +35,32 @@ def calculate_length(x):
 df['app_list_length'] = df['ph_app_list'].apply(calculate_length)
 df = df.drop('ph_app_list', axis=1)
 print(df['app_list_length'])
+
+# 'ph_call_log_stats': create new columns for each key-value pair in the dictionary to one-hot encoding
+def extract_json_values(row, key):
+    try:
+        values = json.loads(row['ph_call_log_stats'])
+        return values[key]
+    except:
+        return 0
+keys = ['percent_incoming_nighttime', 'percent_outgoing_daytime', 'duration_incoming_daytime',
+        'duration_outgoing_daytime', 'percent_incoming_daytime', 'percent_other_calls',
+        'duration_outgoing_nighttime', 'percent_outgoing_nighttime', 'total_calls', 'duration_incoming_nighttime']
+for key in keys:
+    df[key] = df.apply(lambda row: extract_json_values(row, key), axis=1)
+
+# Handle Missing Value: 'fb_relation', 'ph_call_log_stats', 'days_since_fb_update', 'last_updated_utc'
+df['fb_relation']=df['fb_relation'].fillna("No_Relation")
+df['ph_call_log_stats']=df['ph_call_log_stats'].fillna("No_Stats")
+
+# 'fb_relation': recotegorise the variable types, create new columns for each key-value pair in the dictionary to one-hot encoding
+df['fb_relation'] = df['fb_relation'].replace([
+       "It's complicated", 'Widowed', 'Divorced',
+       'In a civil union', "It's complicated (Pending)"], 'others')
+
+df['fb_relation'] = df['fb_relation'].replace([
+       'In an open relationship', 'Engaged',
+       'In a domestic partnership', 'Separated',
+       'Engaged (Pending)', 'Married (Pending)', 
+       'In an open relationship (Pending)', 'In a relationship (Pending)',
+       'In a domestic partnership (Pending)'], 'In a relationship')
