@@ -1,16 +1,42 @@
-import pandas as pd
-import numpy as np
+# import
+!pip piplite
+!pip install seaborn
+!pip install sweetviz
+!pip install shap
+!pip install catboost
+
+from datetime import datetime
+from scipy import stats
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
 import matplotlib.pyplot as plt
 import seaborn as sns
-from datetime import datetime
+import pandas as pd
+import numpy as np
 import pytz
 import json
 import seaborn as sns
 import sweetviz as sv
-from scipy import stats
+import statsmodels.api as sm
+import warnings
+warnings.filterwarnings("ignore")
 
-## Data Cleaning & Feature Engineer
+from google.colab import drive
+drive.mount('/content/drive')
+df = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/credits.csv')
 
+# EDA 
+my_report = sv.analyze(df)
+my_report.show_notebook()
+
+pd.DataFrame(df) # print the dataframe
+
+df.shape
+df.info()
+df.isnull().sum()
+
+# Data Cleaning & Feature Engineer
 # Removing Features: 'ph_country_code', 'fb_gender', 'fb_dob', 'ph_other_device_info'
 df = df.drop('ph_country_code', axis=1)
 df = df.drop('fb_dob', axis=1)
