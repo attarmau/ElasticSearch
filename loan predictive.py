@@ -223,5 +223,49 @@ def random_forest_classification(df, test_size=0.2, random_state=42):
 
     return rf_classifier, scaler
 
+# Support Vector Machines (SVM)
+def run_svm_classification(df, test_size=0.2, random_state=42):
+
+    x = df.drop('flag_bad', axis=1) # features
+    y = df['flag_bad'] # target variable
+
+    scaler = StandardScaler()
+    x_scaled = scaler.fit_transform(x)
+    
+    X_train, X_test, y_train, y_test = train_test_split(x_scaled, y, test_size=test_size, random_state=random_state)
+
+    
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)  
+
+  
+    svm_model = SVC(random_state=random_state)
+    svm_model.fit(X_train, y_train)
+    
+    y_pred = svm_model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    
+    print("Support Vector Machines Results:")
+    print("SVM Accuracy: ", accuracy)
+    print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+    print("Precision: ", precision_score(y_test, y_pred))
+    print("Recall: ", recall_score(y_test, y_pred))
+    print("F1 Score: ", f1_score(y_test, y_pred))
+
+   
+    y_prob = svm_model.decision_function(X_test)
+    fpr, tpr, thresholds = roc_curve(y_test, y_prob)
+    roc_auc = roc_auc_score(y_test, y_prob)
+    plt.plot(fpr, tpr, label="ROC AUC = {:.3f}".format(roc_auc))
+    plt.plot([0, 1], [0, 1], linestyle="--", label="Random Guess")
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("Receiver Operating Characteristic (ROC) Curve")
+    plt.legend()
+    plt.show()
+
+run_svm_classification(df, test_size=0.2)
+
 rf_classifier, scaler = random_forest_classification(df, test_size=0.2, random_state=42)
 
