@@ -318,3 +318,46 @@ def xgboost_model(df, test_size=0.2):
 
 xgboost_model(df, test_size=0.2) # can control train-test size here
 
+# Gradient Boosting
+def gradient_boosting(df, test_size=0.2):
+    
+    x = df.drop('flag_bad', axis=1) # features
+    y = df['flag_bad'] # target variable
+
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
+
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)  
+
+    gb = GradientBoostingClassifier(random_state=42)
+    gb.fit(X_train_scaled, y_train)
+
+    y_pred = gb.predict(X_test_scaled)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    confusion = confusion_matrix(y_test, y_pred)
+    auc = roc_auc_score(y_test, y_pred)
+
+    print("Accuracy: ", accuracy)
+    print("Precision: ", precision)
+    print("Recall: ", recall)
+    print("F1 Score: ", f1)
+    print("Confusion Matrix: ")
+    print(confusion)
+    print("ROC AUC Score: ", auc)
+
+    fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+    plt.plot(fpr, tpr, label="ROC Curve (area=%0.2f)" % auc)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic (ROC) Curve')
+    plt.legend(loc="lower right")
+    plt.show()
+
+gradient_boosting(df, test_size=0.2)
