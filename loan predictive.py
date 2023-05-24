@@ -361,3 +361,5 @@ def gradient_boosting(df, test_size=0.2):
     plt.show()
 
 gradient_boosting(df, test_size=0.2)
+
+# CatBoost
