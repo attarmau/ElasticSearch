@@ -431,6 +431,7 @@ print(selector.get_support(indices=True))
 selected_features = X_train.columns[selector.get_support()]
 print(selected_features)
 
+# The feature importance values for the selected features in XGBoost
 import xgboost as xgb
 xgb_model = xgb.XGBClassifier(random_state=42)
 xgb_model.fit(X_train_new, y_train)
