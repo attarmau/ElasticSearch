@@ -416,18 +416,13 @@ catboost_classifier(df, test_size=0.2)
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.model_selection import train_test_split
 import pandas as pd
-
 X = df.drop('flag_bad', axis=1)
 y = df['flag_bad']
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
 selector = SelectKBest(f_classif, k=5)
 X_train_new = selector.fit_transform(X_train, y_train)
 X_test_new = selector.transform(X_test)
-
 print(selector.get_support(indices=True))
-
 selected_features = X_train.columns[selector.get_support()]
 print(selected_features)
 
