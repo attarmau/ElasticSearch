@@ -430,3 +430,11 @@ print(selector.get_support(indices=True))
 
 selected_features = X_train.columns[selector.get_support()]
 print(selected_features)
+
+import xgboost as xgb
+xgb_model = xgb.XGBClassifier(random_state=42)
+xgb_model.fit(X_train_new, y_train)
+feature_importance = xgb_model.feature_importances_
+selected_features = X_train.columns[selector.get_support()]
+for feature_name, importance_value in zip(selected_features, feature_importance):
+    print("{}: {}".format(feature_name, importance_value))
