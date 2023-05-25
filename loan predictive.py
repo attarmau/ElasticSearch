@@ -411,3 +411,11 @@ def catboost_classifier(df, test_size=0.2):
     plt.show()
 
 catboost_classifier(df, test_size=0.2)
+
+# Model Improvenment
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.model_selection import train_test_split
+import pandas as pd
+
+X = df.drop('flag_bad', axis=1)
+y = df['flag_bad']
