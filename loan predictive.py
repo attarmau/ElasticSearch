@@ -434,3 +434,16 @@ feature_importance = xgb_model.feature_importances_
 selected_features = X_train.columns[selector.get_support()]
 for feature_name, importance_value in zip(selected_features, feature_importance):
     print("{}: {}".format(feature_name, importance_value))
+    
+# Use Top 5 Feature Selection to train the model in XGBoost
+import xgboost as xgb
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, roc_auc_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import shap
+import matplotlib.pyplot as plt
+
+def xgboost_model(df, test_size=0.2):
+    
+    x = df[['de_employment_type', 'de_education', 'app_list_length', 'percent_incoming_daytime', 'percent_other_calls']] # top five selected features
+    y = df['flag_bad'] # target variable
