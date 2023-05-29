@@ -446,3 +446,11 @@ import matplotlib.pyplot as plt
 def xgboost_model(df, test_size=0.2):
     x = df[['de_employment_type', 'de_education', 'app_list_length', 'percent_incoming_daytime', 'percent_other_calls']] # top five selected features
     y = df['flag_bad'] # target variable
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
+    
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)  
+
+    xgb_model = xgb.XGBClassifier(random_state=42)
+    xgb_model.fit(X_train_scaled, y_train)
