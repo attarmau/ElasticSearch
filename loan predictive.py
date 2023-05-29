@@ -444,6 +444,5 @@ import shap
 import matplotlib.pyplot as plt
 
 def xgboost_model(df, test_size=0.2):
-    
     x = df[['de_employment_type', 'de_education', 'app_list_length', 'percent_incoming_daytime', 'percent_other_calls']] # top five selected features
     y = df['flag_bad'] # target variable
