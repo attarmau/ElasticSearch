@@ -139,10 +139,8 @@ def logistic_regression(df, test_size=0.2):
     scaler = StandardScaler() # standardize
     X_train_scaled = scaler.fit_transform(X_train) # standardize
     X_test_scaled = scaler.transform(X_test) # standardize
-
     logistic_reg = LogisticRegression(random_state=42)
     logistic_reg.fit(X_train_scaled, y_train)
-
     y_pred = logistic_reg.predict(X_test_scaled)
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred)
@@ -150,7 +148,6 @@ def logistic_regression(df, test_size=0.2):
     f1 = f1_score(y_test, y_pred)
     confusion = confusion_matrix(y_test, y_pred)
     auc = roc_auc_score(y_test, y_pred)
-
     print("Accuracy: ", accuracy)
     print("Precision: ", precision)
     print("Recall: ", recall)
