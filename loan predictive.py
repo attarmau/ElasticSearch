@@ -135,7 +135,6 @@ for col in cols_to_process:
 def logistic_regression(df, test_size=0.2):
     x = df.drop('flag_bad', axis=1) # features
     y = df['flag_bad'] # target variable
-
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
 
     scaler = StandardScaler()
