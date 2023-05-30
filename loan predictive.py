@@ -133,7 +133,6 @@ for col in cols_to_process:
 # Model Training
 ## Logistic Regression
 def logistic_regression(df, test_size=0.2):
-
     x = df.drop('flag_bad', axis=1) # features
     y = df['flag_bad'] # target variable
 
