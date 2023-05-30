@@ -137,8 +137,8 @@ def logistic_regression(df, test_size=0.2):
     y = df['flag_bad'] # target variable
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
     scaler = StandardScaler() # standardize
-    X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test)  
+    X_train_scaled = scaler.fit_transform(X_train) # standardize
+    X_test_scaled = scaler.transform(X_test) # standardize
 
     logistic_reg = LogisticRegression(random_state=42)
     logistic_reg.fit(X_train_scaled, y_train)
