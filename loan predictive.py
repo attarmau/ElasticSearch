@@ -358,11 +358,9 @@ gradient_boosting(df, test_size=0.2)
 
 # CatBoost
 from catboost import CatBoostClassifier
-
 def catboost_classifier(df, test_size=0.2):
     x = df.drop('flag_bad', axis=1) # features
     y = df['flag_bad'] # target variable
-
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
 
     catboost_clf = CatBoostClassifier(random_seed=42, iterations=500, learning_rate=0.1, loss_function='Logloss')
