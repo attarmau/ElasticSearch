@@ -363,7 +363,6 @@ def catboost_classifier(df, test_size=0.2):
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
     catboost_clf = CatBoostClassifier(random_seed=42, iterations=500, learning_rate=0.1, loss_function='Logloss')
     catboost_clf.fit(X_train, y_train, verbose=10)
-
     y_pred = catboost_clf.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred)
