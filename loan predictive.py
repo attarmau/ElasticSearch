@@ -315,7 +315,6 @@ xgboost_model(df, test_size=0.2) # can control train-test size here
 def gradient_boosting(df, test_size=0.2):
     x = df.drop('flag_bad', axis=1) # features
     y = df['flag_bad'] # target variable
-
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
 
     scaler = StandardScaler()
