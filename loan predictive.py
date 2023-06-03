@@ -223,10 +223,8 @@ rf_classifier, scaler = random_forest_classification(df, test_size=0.2, random_s
 def run_svm_classification(df, test_size=0.2, random_state=42):
     x = df.drop('flag_bad', axis=1) # features
     y = df['flag_bad'] # target variable
-
     scaler = StandardScaler()
     x_scaled = scaler.fit_transform(x)
-    
     X_train, X_test, y_train, y_test = train_test_split(x_scaled, y, test_size=test_size, random_state=random_state)
 
     
