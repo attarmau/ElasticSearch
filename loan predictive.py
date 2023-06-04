@@ -436,3 +436,11 @@ def xgboost_model(df, test_size=0.2):
     X_test_scaled = scaler.transform(X_test)  
     xgb_model = xgb.XGBClassifier(random_state=42)
     xgb_model.fit(X_train_scaled, y_train)
+    
+    y_pred = xgb_model.predict(X_test_scaled)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    confusion = confusion_matrix(y_test, y_pred)
+    auc = roc_auc_score(y_test, y_pred)
