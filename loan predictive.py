@@ -434,7 +434,6 @@ def xgboost_model(df, test_size=0.2):
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)  
-    
     xgb_model = xgb.XGBClassifier(random_state=42)
     xgb_model.fit(X_train_scaled, y_train)
     
