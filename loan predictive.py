@@ -445,3 +445,11 @@ def xgboost_model(df, test_size=0.2):
     f1 = f1_score(y_test, y_pred)
     confusion = confusion_matrix(y_test, y_pred)
     auc = roc_auc_score(y_test, y_pred)
+    
+    print("Accuracy: ", accuracy)
+    print("Precision: ", precision)
+    print("Recall: ", recall)
+    print("F1 Score: ", f1)
+    print("Confusion Matrix: ")
+    print(confusion)
+    print("ROC AUC Score: ", auc)
