@@ -433,9 +433,11 @@ def xgboost_model(df, test_size=0.2):
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=42)
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test)  
+    X_test_scaled = scaler.transform(X_test) 
+    
     xgb_model = xgb.XGBClassifier(random_state=42)
     xgb_model.fit(X_train_scaled, y_train)
+    
     y_pred = xgb_model.predict(X_test_scaled)
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred)
@@ -443,6 +445,7 @@ def xgboost_model(df, test_size=0.2):
     f1 = f1_score(y_test, y_pred)
     confusion = confusion_matrix(y_test, y_pred)
     auc = roc_auc_score(y_test, y_pred)
+    
     print("Accuracy: ", accuracy)
     print("Precision: ", precision)
     print("Recall: ", recall)
@@ -450,6 +453,7 @@ def xgboost_model(df, test_size=0.2):
     print("Confusion Matrix: ")
     print(confusion)
     print("ROC AUC Score: ", auc)
+    
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
     plt.plot(fpr, tpr, label="ROC Curve (area=%0.2f)" % auc)
     plt.plot([0, 1], [0, 1], 'k--')
