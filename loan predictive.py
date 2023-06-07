@@ -466,3 +466,20 @@ def xgboost_model(df, test_size=0.2):
     plt.show()
     
 xgboost_model(df, test_size=0.2)
+
+# Hyperparameter Tuning in XGBoost
+x = df[['de_employment_type', 'de_education', 'app_list_length', 'percent_incoming_daytime', 'percent_other_calls']] # top 5 selected features
+y = df['flag_bad'] # target variable
+
+scaler = StandardScaler()
+x_scaled = scaler.fit_transform(x)
+
+X_train, X_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.2, random_state=42)
+
+param_grid = {
+    'learning_rate': [0.01, 0.05, 0.1, 0.15, 0.2],
+    'max_depth': [3, 4, 5, 6, 7, 8, 9, 10],
+    'min_child_weight': [1, 3, 5, 7],
+    'subsample': [0.6, 0.7, 0.8, 0.9, 1.0],
+    'colsample_bytree': [0.6, 0.7, 0.8, 0.9, 1.0],
+    'gamma': [0, 0.1, 0.2, 0.3, 0.4]
