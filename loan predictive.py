@@ -487,5 +487,4 @@ xgb_classifier = xgb.XGBClassifier(random_state=42)
 # RandomizedSearchCV to select the best hyperparameters
 xgb_random = RandomizedSearchCV(estimator = xgb_classifier, param_distributions = param_grid, n_iter = 100, cv = 3, verbose=2, random_state=42, n_jobs = -1)
 xgb_random.fit(X_train, y_train)
-
 print("Best Hyperparameters:", xgb_random.best_params_)
