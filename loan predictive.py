@@ -214,7 +214,6 @@ def random_forest_classification(df, test_size=0.2, random_state=42):
     plt.xlabel('False Positive Rate (1 - Specificity)')
     plt.ylabel('True Positive Rate (Sensitivity)')
     plt.show()
-
     return rf_classifier, scaler
 
 rf_classifier, scaler = random_forest_classification(df, test_size=0.2, random_state=42)
