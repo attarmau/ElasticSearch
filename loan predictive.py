@@ -488,3 +488,12 @@ xgb_classifier = xgb.XGBClassifier(random_state=42)
 xgb_random = RandomizedSearchCV(estimator = xgb_classifier, param_distributions = param_grid, n_iter = 100, cv = 3, verbose=2, random_state=42, n_jobs = -1)
 xgb_random.fit(X_train, y_train)
 print("Best Hyperparameters:", xgb_random.best_params_)
+
+# Evaluate the model with best hyperparameters on test data
+y_pred = xgb_random.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+confusion = confusion_matrix(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+roc_auc = roc_auc_score(y_test, xgb_random.predict_proba(X_test)[:,1])
