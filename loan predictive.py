@@ -506,3 +506,5 @@ print("F1 Score:", f1)
 print("roc_auc:", roc_auc)
 
 # Further Analysis
+report = sv.analyze(df)
+report.show_html(filepath='Loan_Dataset_Sweetviz.html')
