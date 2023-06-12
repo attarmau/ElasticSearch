@@ -511,3 +511,4 @@ report.show_html(filepath='Loan_Dataset_Sweetviz.html')
 report.show_notebook(filepath='Loan_Dataset_Sweetviz.html')
 
 # Descriptive Analysis Discover
+x.describe()
