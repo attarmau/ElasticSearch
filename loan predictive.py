@@ -509,3 +509,5 @@ print("roc_auc:", roc_auc)
 report = sv.analyze(df)
 report.show_html(filepath='Loan_Dataset_Sweetviz.html')
 report.show_notebook(filepath='Loan_Dataset_Sweetviz.html')
+
+# Descriptive Analysis Discover
