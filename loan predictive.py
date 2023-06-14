@@ -514,3 +514,4 @@ report.show_notebook(filepath='Loan_Dataset_Sweetviz.html')
 x.describe()
 
 # Categorical Univariate Analysis in Value scale
+features = ['de_gender', 'de_employment_type', 'de_education', 'de_marital_status', 'de_children']
