@@ -200,7 +200,6 @@ def random_forest_classification(df, test_size=0.2, random_state=42):
     print("Recall:", recall)
     print("F1 Score:", f1)
     print('ROC AUC:', roc_auc)
-
     fpr, tpr, thresholds = roc_curve(y_test, rf_classifier.predict_proba(X_test)[:,1])
     plt.figure(figsize=(8,6))
     plt.plot(fpr, tpr)
