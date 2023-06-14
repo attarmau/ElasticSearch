@@ -56,7 +56,6 @@ df = df.drop('ph_other_device_info', axis=1)
 # Standardizing data types: 'de_date_joined', 'fb_last_update_date'
 df['de_date_joined'] = pd.to_datetime(df['de_date_joined'], format='%d/%m/%Y %H:%M')
 df['days_since_joined'] = (datetime.now() - df['de_date_joined']).dt.days
-
 utc = pytz.utc
 df['fb_last_updated_date'] = pd.to_datetime(df['fb_last_updated_date'])
 df['last_updated_utc'] = df['fb_last_updated_date'].dt.tz_convert(utc)
