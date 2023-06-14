@@ -154,7 +154,6 @@ def logistic_regression(df, test_size=0.2):
     print("Confusion Matrix: ")
     print(confusion)
     print("ROC AUC Score: ", auc)
-
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
     plt.plot(fpr, tpr, label="ROC Curve (area=%0.2f)" % auc)
     plt.plot([0, 1], [0, 1], 'k--')
