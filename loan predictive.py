@@ -515,3 +515,10 @@ x.describe()
 
 # Categorical Univariate Analysis in Value scale
 features = ['de_gender', 'de_employment_type', 'de_education', 'de_marital_status', 'de_children']
+plt.figure(figsize = (20, 25))
+for i in enumerate(features):
+    plt.subplot(5, 2, i[0]+1)
+    plt.subplots_adjust(hspace=0.5)
+    sns.countplot(x = i[1], hue = 'flag_bad', data = df)
+    plt.rcParams['axes.titlesize'] = 16
+    plt.xticks(rotation = 45)
