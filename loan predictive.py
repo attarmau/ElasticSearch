@@ -512,3 +512,5 @@ report.show_notebook(filepath='Loan_Dataset_Sweetviz.html')
 
 # Descriptive Analysis Discover
 x.describe()
+
+# Categorical Univariate Analysis in Value scale
