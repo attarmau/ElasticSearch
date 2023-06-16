@@ -517,6 +517,7 @@ for i in enumerate(features):
     sns.countplot(x = i[1], hue = 'flag_bad', data = df)
     plt.rcParams['axes.titlesize'] = 16
     plt.xticks(rotation = 45)
+    
 # Two-Way Frequency Tables between Dependent variable(flag_bad) and Independent Variable (Gender)
 gender_map = {1: 'male', 2: 'female'}
 df['de_gender'] = df['de_gender'].map(gender_map)
