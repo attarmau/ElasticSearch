@@ -518,3 +518,6 @@ for i in enumerate(features):
     plt.rcParams['axes.titlesize'] = 16
     plt.xticks(rotation = 45)
 # Two-Way Frequency Tables between Dependent variable(flag_bad) and Independent Variable (Gender)
+gender_map = {1: 'male', 2: 'female'}
+df['de_gender'] = df['de_gender'].map(gender_map)
+pd.crosstab(index=df['de_gender'], columns=df['flag_bad'], normalize='index') * 100
