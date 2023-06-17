@@ -522,3 +522,12 @@ for i in enumerate(features):
 gender_map = {1: 'male', 2: 'female'}
 df['de_gender'] = df['de_gender'].map(gender_map)
 pd.crosstab(index=df['de_gender'], columns=df['flag_bad'], normalize='index') * 100
+
+# create a crosstab of gender and flag_bad
+gender_bad = pd.crosstab(index=df['de_gender'], columns=df['flag_bad'])
+
+# calculate the proportion of bad loans for each gender
+gender_bad['Proportion of Bad Loans'] = gender_bad[1] / (gender_bad[0] + gender_bad[1])
+
+# result
+print(gender_bad['Proportion of Bad Loans'])
