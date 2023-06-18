@@ -340,7 +340,6 @@ def gradient_boosting(df, test_size=0.2):
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
     plt.show()
-
 gradient_boosting(df, test_size=0.2)
 
 # CatBoost
