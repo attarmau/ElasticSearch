@@ -386,7 +386,6 @@ def catboost_classifier(df, test_size=0.2):
     plt.xticks(rotation=90)
     plt.title('Feature Importances')
     plt.show()
-
 catboost_classifier(df, test_size=0.2)
 
 # Model Improvenment
