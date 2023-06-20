@@ -41,6 +41,7 @@ my_report = sv.analyze(df)
 my_report.show_notebook()
 
 pd.DataFrame(df) # print the dataframe
+
 df.shape
 df.info()
 df.isnull().sum()
