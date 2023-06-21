@@ -84,4 +84,7 @@ public class ElasticsearchDocumentCount {
             searchSourceBuilder.size(0); // We only need the count, so set the size to 0
             searchRequest.source(searchSourceBuilder);
 
-  
+            // Execute the search request
+            SearchResponse searchResponse = client.search(searchRequest);
+
+    
