@@ -76,4 +76,12 @@ public class ElasticsearchDocumentCount {
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http")));
 
-   
+        try {
+            // Prepare the search request
+            SearchRequest searchRequest = new SearchRequest("products");
+            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+            searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+            searchSourceBuilder.size(0); // We only need the count, so set the size to 0
+            searchRequest.source(searchSourceBuilder);
+
+  
