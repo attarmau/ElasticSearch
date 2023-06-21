@@ -59,3 +59,5 @@ query = {
 results = es.search(index=index_name, doc_type=doc_type, body=query)
 for hit in results['hits']['hits']:
     print(hit['_source']['title'])
+
+# Write a Java code snippet that retrieves all documents from an Elasticsearch index named "products" and counts the total number of documents.
