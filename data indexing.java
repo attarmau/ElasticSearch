@@ -86,5 +86,20 @@ public class ElasticsearchDocumentCount {
 
             // Execute the search request
             SearchResponse searchResponse = client.search(searchRequest);
+        // Retrieve the count from the search response
+            long totalDocuments = searchResponse.getHits().getTotalHits().value;
+            System.out.println("Total documents in 'products' index: " + totalDocuments);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the Elasticsearch client connection
+            try {
+                client.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
 
     
