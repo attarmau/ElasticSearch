@@ -61,3 +61,12 @@ for hit in results['hits']['hits']:
     print(hit['_source']['title'])
 
 # Write a Java code snippet that retrieves all documents from an Elasticsearch index named "products" and counts the total number of documents.
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
+
