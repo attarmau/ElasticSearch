@@ -4,7 +4,7 @@
 !pip install sweetviz
 !pip install shap
 !pip install catboost
-
+warnings.filterwarnings("ignore")
 from datetime import datetime
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder
@@ -20,7 +20,6 @@ import seaborn as sns
 import sweetviz as sv
 import statsmodels.api as sm
 import warnings
-warnings.filterwarnings("ignore")
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
