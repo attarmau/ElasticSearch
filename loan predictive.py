@@ -4,7 +4,6 @@
 !pip install sweetviz
 !pip install shap
 !pip install catboost
-warnings.filterwarnings("ignore")
 from datetime import datetime
 from scipy import stats
 from sklearn.preprocessing import LabelEncoder
@@ -30,7 +29,7 @@ from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_
 import matplotlib.pyplot as plt
 import shap
 import xgboost as xgb
-
+warnings.filterwarnings("ignore")
 from google.colab import drive
 drive.mount('/content/drive')
 df = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/credits.csv')
