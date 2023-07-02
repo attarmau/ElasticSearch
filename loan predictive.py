@@ -128,8 +128,7 @@ threshold = 3
 for col in cols_to_process:
     remove_outliers(df, col, threshold)
     
-# Model Training
-## Logistic Regression
+# Model Training ## Logistic Regression
 def logistic_regression(df, test_size=0.2):
     x = df.drop('flag_bad', axis=1) # features
     y = df['flag_bad'] # target variable
