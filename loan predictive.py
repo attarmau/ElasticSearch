@@ -145,6 +145,7 @@ def logistic_regression(df, test_size=0.2):
     f1 = f1_score(y_test, y_pred)
     confusion = confusion_matrix(y_test, y_pred)
     auc = roc_auc_score(y_test, y_pred)
+    
     print("Accuracy: ", accuracy)
     print("Precision: ", precision)
     print("Recall: ", recall)
@@ -152,6 +153,7 @@ def logistic_regression(df, test_size=0.2):
     print("Confusion Matrix: ")
     print(confusion)
     print("ROC AUC Score: ", auc)
+    
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
     plt.plot(fpr, tpr, label="ROC Curve (area=%0.2f)" % auc)
     plt.plot([0, 1], [0, 1], 'k--')
@@ -162,6 +164,7 @@ def logistic_regression(df, test_size=0.2):
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
     plt.show()
+    
 logistic_regression(df, test_size=0.2)
 
 # Random Forest Classifier
