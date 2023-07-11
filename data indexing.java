@@ -1,4 +1,45 @@
 from Elasticsearch import Elasticsearch
+# Write a Java code snippet that retrieves all documents from an Elasticsearch index named "products" and counts the total number of documents.
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
+
+public class ElasticsearchDocumentCount {
+    public static void main(String[] args) {
+        // Connect to Elasticsearch
+        RestHighLevelClient client = new RestHighLevelClient(
+                RestClient.builder(new HttpHost("localhost", 9200, "http")));
+
+        try {
+            // Prepare the search request
+            SearchRequest searchRequest = new SearchRequest("products");
+            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+            searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+            searchSourceBuilder.size(0); // We only need the count, so set the size to 0
+            searchRequest.source(searchSourceBuilder);
+
+            // Execute the search request
+            SearchResponse searchResponse = client.search(searchRequest);
+        // Retrieve the count from the search response
+            long totalDocuments = searchResponse.getHits().getTotalHits().value;
+            System.out.println("Total documents in 'products' index: " + totalDocuments);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the Elasticsearch client connection
+            try {
+                client.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
 
 # create an Elasticsearch client object
 es = Elasticsearch()
@@ -59,47 +100,3 @@ query = {
 results = es.search(index=index_name, doc_type=doc_type, body=query)
 for hit in results['hits']['hits']:
     print(hit['_source']['title'])
-
-# Write a Java code snippet that retrieves all documents from an Elasticsearch index named "products" and counts the total number of documents.
-import org.apache.http.HttpHost;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.search.sort.SortOrder;
-
-public class ElasticsearchDocumentCount {
-    public static void main(String[] args) {
-        // Connect to Elasticsearch
-        RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("localhost", 9200, "http")));
-
-        try {
-            // Prepare the search request
-            SearchRequest searchRequest = new SearchRequest("products");
-            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-            searchSourceBuilder.query(QueryBuilders.matchAllQuery());
-            searchSourceBuilder.size(0); // We only need the count, so set the size to 0
-            searchRequest.source(searchSourceBuilder);
-
-            // Execute the search request
-            SearchResponse searchResponse = client.search(searchRequest);
-        // Retrieve the count from the search response
-            long totalDocuments = searchResponse.getHits().getTotalHits().value;
-            System.out.println("Total documents in 'products' index: " + totalDocuments);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Close the Elasticsearch client connection
-            try {
-                client.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-}
-
-    
