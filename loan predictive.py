@@ -490,6 +490,7 @@ precision = precision_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
 f1 = f1_score(y_test, y_pred)
 roc_auc = roc_auc_score(y_test, xgb_random.predict_proba(X_test)[:,1])
+
 print("XGBoost Classifier Results:")
 print("Accuracy:", accuracy)
 print("Confusion Matrix:\n", confusion)
