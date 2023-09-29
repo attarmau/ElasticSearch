@@ -1,8 +1,4 @@
-!pip piplite
-!pip install seaborn
-!pip install sweetviz
-!pip install shap
-!pip install catboost
+
 
 from datetime import datetime
 from scipy import stats
